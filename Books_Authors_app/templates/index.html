@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+</head>
+
+<body class="container mt-5 ">
+    <div class="row">
+
+        <div class="col">
+            <h1 class="offset-sm-1 mb-4">Add a Book</h1>
+            <div class="form-group">
+                <form action="add_book" method="post">
+                    {% csrf_token %}
+                    <div class="mb-2">
+                        <label class="col-2">Title</label>
+                        <input type="text" name="title" class=" col-6 ml-3" />
+                    </div>
+                    <div>
+                        <label class="col-2"> Description </label>
+                        <input type="text" name="desc" class="col-6 ml-3" />
+                    </div>
+            </div>
+            <button class="btn btn-outline-dark offset-sm-2 mt-3" type="submit">Add </button>
+            </form>
+        </div>
+        <div class="col col-3">
+            <table class="table table-bordered ">
+                <thead >
+                    <tr class="table-active">
+                        <td class="col-1">ID</td>
+                        <td>Title</td>
+                        <td class="col-3">action</td>
+                    </tr>
+                </thead>
+                {% for book in all_book %}
+                <tbody>
+                    <tr >
+                        <td>{{ book.id }} </td>
+                        <td>{{ book.title }} </td>
+                        <td><a href="/books/{{book.id}}">View</a></td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+    </div>
+</html>
